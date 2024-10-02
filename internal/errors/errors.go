@@ -2,10 +2,13 @@ package errors
 
 import "net/http"
 
-type Error struct{ 
+type Error struct{}
+
+func NewError() Error{
+	return Error{}
 }
 
-func(e Error) notFound(w http.ResponseWriter, r *http.Request){
+func(e Error) NotFound(w http.ResponseWriter, r *http.Request){
 	w.WriteHeader(http.StatusNotFound)
 	w.Write([]byte("not found"))
 }
