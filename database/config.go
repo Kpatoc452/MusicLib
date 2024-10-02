@@ -8,7 +8,7 @@ type Config struct{
 	database string	
 }
 
-func newConfig() *Config{
+func NewConfig() *Config{
 	return &Config{
 		host: "localhost",
 		port: "5432",

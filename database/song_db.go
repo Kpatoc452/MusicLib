@@ -52,8 +52,8 @@ func(DB *DataBase) CreateSong(song models.Song) error{
 	return err
 }
 
-func(DB *DataBase) UpdateSong(id int, updateSong models.Song) error{
-	_, err := DB.db.Exec("UPDATE songs SET group=%s song=%s releaseDate=%s text=%s link=%s", updateSong.Group, updateSong.Song, updateSong.ReleaseDate, updateSong.Text, updateSong.Link)
+func(DB *DataBase) UpdateSong(name string, group string, updateSong models.Song) error{
+	_, err := DB.db.Exec("UPDATE songs WHERE (group=%s, song=%s) SET group=%s song=%s releaseDate=%s text=%s link=%s",group, name, updateSong.Group, updateSong.Song, updateSong.ReleaseDate, updateSong.Text, updateSong.Link)
 	return err
 }
 
