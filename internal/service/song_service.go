@@ -31,8 +31,8 @@ func(s *SongService) CreateSong(song models.Song) error{
 	return s.db.CreateSong(song)
 }
 
-func(s *SongService) UpdateSong(id int, updateSong models.Song) error{
-	return s.db.UpdateSong(id, updateSong)
+func(s *SongService) UpdateSong(name string, group string, updateSong models.Song) error{
+	return s.db.UpdateSong(name, group, updateSong)
 }
 
 func(s *SongService) DeleteSong(name string, group string) error{

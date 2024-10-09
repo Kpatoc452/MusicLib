@@ -6,6 +6,6 @@ type Config struct{
 
 func NewConfig() *Config{
 	return &Config{
-		Addr: "localhost:8080",
+		Addr: ":8080",
 	}
 }

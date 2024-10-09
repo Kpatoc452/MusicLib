@@ -6,18 +6,18 @@ import (
 
 type Server struct {
 	srv *http.Server
-	rgstr map[string]http.HandlerFunc
+	Rgstr map[string]http.HandlerFunc
 }
 
 func NewServer() *Server{
 	return &Server{
 		srv: nil,
-		rgstr: make(map[string]http.HandlerFunc),
+		Rgstr: make(map[string]http.HandlerFunc),
 	}
 }
 
 func(s *Server) Init(cfg *Config){
-	mux := s.Register(s.rgstr)
+	mux := s.Register(s.Rgstr)
 
 	s.srv = &http.Server{
 		Addr: cfg.Addr,
@@ -30,7 +30,7 @@ func(s *Server) Run(){
 }
 
 func(s *Server) AddEndpoint(endpoint string, handler http.HandlerFunc){
-	s.rgstr[endpoint] = handler
+	s.Rgstr[endpoint] = handler
 }
 
 func(s *Server) Register(endpoints map[string]http.HandlerFunc) (*http.ServeMux){

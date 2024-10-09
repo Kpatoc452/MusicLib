@@ -3,6 +3,8 @@ package database
 import (
 	"fmt"
 	"musiclib/models"
+
+	_ "github.com/lib/pq"
 )
 
 func(DB *DataBase) GetSong(id int) (models.Song, error){

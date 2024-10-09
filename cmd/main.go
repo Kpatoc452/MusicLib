@@ -1,20 +1,32 @@
 package main
 
-import "net/http"
+import (
+	"fmt"
+	"musiclib/cmd/server"
+	"musiclib/database"
 
-type Server struct{
-	routes map[string]map[string]http.HandleFunc
-}
+	"musiclib/internal/controllers"
+	"musiclib/internal/errors"
+	"musiclib/internal/service"
+)
 
-func NewServer()
-
-func (r *Server) addRoute(method, path string, handler http.HandlerFunc) {
-    if r.routes[path] == nil {
-        r.routes[path] = make(map[string]http.HandlerFunc)
-    }
-    r.routes[path][method] = handler
-}
 
 func main(){
+	cfg := InitConfig()
+	db, err := database.IntitDb(cfg.DataBaseCfg)
+	if err != nil{
+		panic(err)
+	}
+	service := service.NewService(db)
+	errs := errors.NewError()
+	handler := controllers.NewHandle(service, errs)
+	router := controllers.NewRouter(handler)
+
+	server := server.NewServer()
+
+	server.AddEndpoint("/info", router.Song)
 	
+	server.Init(cfg.ServerCfg)
+	fmt.Println(server.Rgstr)
+	server.Run()
 }
