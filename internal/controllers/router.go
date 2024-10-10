@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"net/http"
 )
 
@@ -15,14 +14,9 @@ func NewRouter(handler *Handler) *Router{
 	}
 }
 
-func(rout *Router) Hello(w http.ResponseWriter, r *http.Request){
-	fmt.Fprintf(w, "hello")
-}
-
 func(rout *Router) Song(w http.ResponseWriter, r *http.Request){
 	switch r.Method{
 		case http.MethodGet:
-			// fmt.Fprintf(w, "hello world!")
 			rout.handler.GetSong(w, r)
 		case http.MethodPost:
 			rout.handler.CreateSong(w, r)

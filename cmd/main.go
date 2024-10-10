@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"musiclib/cmd/server"
 	"musiclib/database"
 
@@ -15,7 +16,7 @@ func main(){
 	cfg := InitConfig()
 	db, err := database.IntitDb(cfg.DataBaseCfg)
 	if err != nil{
-		panic(err)
+		log.Fatal(err)
 	}
 	service := service.NewService(db)
 	errs := errors.NewError()
