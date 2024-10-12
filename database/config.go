@@ -11,10 +11,10 @@ type Config struct{
 func NewConfig() *Config{
 	return &Config{
 		host: "localhost",
-		port: "5432",
-		username: "postgres",
-		password: "Kra888452",
-		database: "postgres",
+		port: "5436",
+		username: "musicpguser",
+		password: "musicpgpswd",
+		database: "musicdb",
 	}
 }
 

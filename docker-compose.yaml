@@ -4,11 +4,11 @@ services:
         image: postgres:14.7-alpine
         restart: unless-stopped
         environment:
-            - POSTGRES_USER: "username"
-            - POSTGRES_PASSWORD: "pswd"
-            - POSTGRES_DB: "ys-db"
+            POSTGRES_DB: 'musicdb'
+            POSTGRES_USER: 'musicpguser'
+            POSTGRES_PASSWORD: 'musicpgpswd'
         ports:
-            - "5432:5432"
+            - "5436:5432"
         volumes:
             - pgdata:/var/lib/postgres/data
             - ./assets/postgres/init_up.sql
